@@ -5,11 +5,13 @@ Ux.js is a lightweight pure javascript plugin for showing help overlays on your 
 Really easy to use and fully respsonsive!
 
 ### Todo
+-----------
 
 * Optimize CSS and image files
 * Feature: Make it work on dynamic content (fx sliders)
 
 ### Usage
+----------
 
 Inlcude the css file in your header tag
 ```css
