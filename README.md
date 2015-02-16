@@ -4,14 +4,14 @@ UX help overlay plugin
 Ux.js is a lightweight pure javascript plugin for showing help overlays on your website pages.
 Really easy to use and fully respsonsive!
 
-### Todo
------------
+Todo
+--------
 
 * Optimize CSS and image files
 * Feature: Make it work on dynamic content (fx sliders)
 
-### Usage
-----------
+Usage
+--------
 
 Inlcude the css file in your header tag
 ```css
@@ -36,11 +36,12 @@ Set the following data attributes on the desired html tags
 </div>
 ```
 
-### methods
+Methods
+--------
 
 
 
 
-### options
-
+Options
+--------
 ux.js comes with 3 options so far
