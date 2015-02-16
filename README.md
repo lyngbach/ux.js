@@ -30,9 +30,13 @@ var overlay = new ux();
 Set the following data attributes on the desired html tags
 ```html
 <div>
-	<p data-ux-position="left" data-ux-text="This will be the help overlay text for the p tag">This is a paragraph</p>
+	<p data-ux-position="left" data-ux-text="This will be the help overlay text">This is a paragraph</p>
 </div>
 ```
+
+### methods
+
+
 
 
 ### options
