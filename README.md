@@ -2,20 +2,21 @@
 UX help overlay plugin
 
 Ux.js is a pure lightweight (5kb minfied + 85kb for imgs) javascript plugin for showing help overlays on your website pages.
-Really easy to use and fully respsonsive! Making help overlays have never been more fun to do!
+Really easy to use and fully responsive! Making help overlays have never been more fun to do!
 
 *Demo inc soon when some provider issue stuff have been sorted*
 
+
 Todo
 --------
-
 * Optimization: Optimize CSS and image files
 * Feature: Make it work on dynamic content (fx sliders)
-* Issue: Help text are currently aligned for center of the element which gives an issue when element content is shorter then the element with itself (think 100% width label with short text)
+* Fix: Making certain functions private
+* Issue: Help text are currently aligned for center of the element which gives an issue when element content is shorter then the element width itself (think 100% width label with short text)
+
 
 Usage
 --------
-
 Put the ux folder inside your css folder and inlcude the css file in your header tag
 ```css
 <link rel="stylesheet" href="css/ux/ux.css">
@@ -31,30 +32,18 @@ Set the following data attributes on the desired html tags
 <p data-ux-position="left" data-ux-text="This will be the help overlay text">This is a paragraph</p>
 ```
 
-Now init the plugin
+Now initialize the plugin
 ```js
 var overlay = new ux();
 ```
 
-You can now call the method .show() on each of your pages where you have set a number of data attributes. Forexample you can put the show method in a global function can call it each time someone clicks the help icon
+You can now call the method .show() on each of your pages where you have a set of ux data attributes. For example you can put the show method in a global function and call it each time someone clicks a help icon
 
 ```js
 function showOverlay() {
 	overlay.show();	
 }
 ```
-
-
-Methods
---------
-Currently methods
-
-| Method		| Description										|
-|---------------|---------------------------------------------------|
-| .show()		| show current page help overlay					|
-| .hide()		| hide current page help over						|
-
-The plugin also fires hide() when clicked on the help over again.
 
 
 Options
@@ -69,13 +58,13 @@ var overlay = new ux({
 });
 ```
 
-option table
+Available options
 
 | Parameter		| Type		| Default	| Description																|
 | ------------- | --------- | --------- | ------------------------------------------------------------------------- |
-| responsive	| boolean	| false		| Set the plugin to calculate positons										|
-| marginWidth	| number	| 70		| Set in pixels the left/right distance from the help box to the the element|
-| marginTop		| number	| 27		| Set in pixels the top/bottom distance from the help box to the the element|
+| responsive	| boolean	| false		| Set the plugin to check if text can be shown on the left & right tooltips	|
+| widthMargin	| number	| 70		| Set in pixels the distance from the tooltip box to the the element for top, right, bottom & left positions			|
+| topMargin		| number	| 27		| Set in pixels the distance from the tooltip box to the the element for topLeft, topRight, bottomRight & bottomLeft positions		|
 
 
 UX positions
@@ -93,7 +82,19 @@ bottomLeft
 left
 ```
 
-When responsive is set to true it will automatically calculate the distances on the left and right positions and convert them to topLeft and topRight if there is not enough space on the sides for the help text
+When responsive is set to true it will automatically calculate the distances on the left and right positions and convert them to topLeft and topRight if there is not enough space on the sides for the tooltip text
+
+
+Methods
+--------
+Available methods
+
+| Method		| Description										|
+|---------------|---------------------------------------------------|
+| .show()		| Show current page help overlay					|
+| .hide()		| Hide current page help over						|
+
+The plugin also fires hide() when clicked on the help overlay again.
 
 
 Support
@@ -102,7 +103,7 @@ Support
 * Tested and working in Firefox 35.0.1
 * Tested and working in Internet Explorer 9+
 
-The plugin is supported for IE 9 but obviously without the fancy transitions as it is not supported by IE 9
+The plugin is supported for IE 9 but obviously without the fancy transitions as it's not supported by IE 9
 
 I do not plan to support it lower than that since IE 8 is a dying browser and Microsoft have stoped supporting XP which were using IE 8.
 
