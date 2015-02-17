@@ -1,0 +1,175 @@
+body {
+	background-color: #111;
+	background: url('../img/bg.png');
+}
+
+@font-face {
+	font-family: 'another_shabby';
+	src: url('../fonts/anothershabby_trial-webfont.eot');
+	src: url('../fonts/anothershabby_trial-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/anothershabby_trial-webfont.woff2') format('woff2'),
+		 url('../fonts/anothershabby_trial-webfont.woff') format('woff'),
+		 url('../fonts/anothershabby_trial-webfont.ttf') format('truetype'),
+		 url('../fonts/anothershabby_trial-webfont.svg#another_shabbyregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: arial, helvetica sans-serif;
+}
+
+h1 {
+	float: left;
+	font-family: 'another_shabby', arial, helvetica sans-serif;
+	font-weight: 700;
+	font-size: 80px;
+	margin: 0;
+	padding: 0;
+	color: #000;
+	opacity: 0.7;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	text-shadow: 1px 1px rgba(255, 255, 255, 0.2), 0px 0px #000;
+}
+
+.deep_bg {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	min-height: 300px;
+	margin-top: 20px;
+	border-top: 1px solid #111;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	box-shadow: inset 0px 3px 5px #111;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.intro p {
+	font-family: 'another_shabby', arial, helvetica sans-serif;
+	font-weight: 700;
+	font-size: 40px;
+	color: #000;
+	opacity: 0.7;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	text-shadow: 1px 1px rgba(255, 255, 255, 0.2), 0px 0px #000;
+	display: inline;
+}
+
+.intro span {
+	color: #ddd;
+	font-size: 20px;
+	font-weight: 300;
+	text-shadow: 1px 1px 3px #000;
+	font-style: italic;
+	opacity: 1;
+	display: inline;
+}
+
+.form {
+	margin-top: 30px;
+	max-width: 960px;
+}
+
+.form input, .form textarea {
+	color: #D0D0D0;
+	background-color: rgba(0, 0, 0, 0.7);
+	/*background-color: #000;*/
+	border: none;
+	box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.75), 1px 1px rgba(255, 255, 255, 0.15);
+	/*box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0,75), 1px 1px rgba(255, 255, 255, 0.15);*/
+	border-radius: 3px;
+}
+
+.form label {
+	color: #D0D0D0;
+}
+
+.form textarea {
+	height: 100px;
+}
+
+.form input:focus {
+	background-color: rgba(0, 0, 0, 0.7);
+	box-shadow: none;
+	box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.75), 1px 1px rgba(255, 255, 255, 0.15);
+	border: none;
+	border-radius: 3px;	
+}
+
+.form .prefix {
+	color: #D0D0D0;
+	background-color: rgba(0, 0, 0, 0.6);
+	border: none;
+	box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.75), 1px 1px rgba(255, 255, 255, 0.15);
+	border-radius: 3px;
+}
+
+.preview {
+
+	display: inline-block;
+	padding: 5px;
+	background-color: rgba(0, 0, 0, 0.6);
+	box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.5), 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+.preview img {
+	/*height: 177px;
+	width: auto;*/
+	width: 100%;
+	height: auto;
+	
+	border: 1px solid #090909;
+}
+
+
+.dancer1 {
+	-webkit-filter: grayscale(1); /* Webkit */  
+    filter: gray; /* IE6-9 */  
+    filter: grayscale(1); /* W3C */  
+}
+
+.btn_wrapper {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	color: #D0D0D0;
+	background-color: rgba(0, 0, 0, 0.7);
+	border: none;
+	box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.75), 1px 1px rgba(255, 255, 255, 0.15);
+	display: inline-block;
+	-webkit-transform: translateY(15px);
+			transform: translateY(15px);
+}
+
+.btn_test {
+	background-color: #333;
+	border: 1px solid #ccc;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	margin-left: 5px;
+	margin-top: 5px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 38px;
+	cursor: pointer;	
+}
+
+.btn_test i {
+	color: #0d0d0d;
+	text-shadow: 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.btn_test:hover {
+	border: 1px solid #00b4ff;
+	box-shadow: 0px 0px 5px #00b4ff;
+}
+
+.btn_test:hover i {
+	color: #00b4ff;
+	text-shadow: none;
+}
+
+

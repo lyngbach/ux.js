@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>ux.js</title>
+		
+		<meta http-equiv="x-ua-compatible" content="IE=edge" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-touch-fullscreen" content="yes">
+
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/foundation.css">
+		<link rel="stylesheet" href="css/ux/ux.css">
+		<link rel="stylesheet" href="css/demo.css">
+		<link rel="stylesheet" href="css/fontello.css">
+	</head>
+	<body>
+		<div class="row">
+			<div class="large-3 columns">
+				<h1>ux.js</h1>
+			</div>
+			<div class="large-9 columns">
+				<div class="intro">
+					<p>Fully responsive pure javascript ux overlay!</p>
+					<span>Try it out here..</span>
+					<div class="btn_wrapper">
+						<div class="btn_test" onclick="showOverlay();">
+							<i class="icon-off"></i>
+						</div>
+					</div>
+
+					<span>and download it here..</span>
+					<div class="btn_wrapper">
+						<a href="https://github.com/lyngbach/ux.js" target="_blank">
+							<div class="btn_test">
+								<i class="icon-github-circled"></i>
+							</div>
+						</a>
+					</div>
+				</div>
+
+				
+			</div>
+		</div>
+		<div class="row">
+
+			<div class="deep_bg">
+				<form class="form large-12 columns large-centered">
+					<div class="row">
+						<div class="large-6 columns">
+							<div class="row collapse">
+								<div class="small-3 large-2 columns">
+									<span class="prefix">http://</span>
+								</div>
+								<div class="small-9 large-10 columns">
+									<input type="text" placeholder="Enter your URL...">
+								</div>
+							</div>
+
+							<label>Text field 1</label>
+							<input type="text" data-ux-text="Here you can write your username for field 1" data-ux-position="top">
+
+							<label>Text field 2</label>
+							<input type="text">
+						</div>
+						<div class="large-6 columns">
+							<div class="preview">
+								<img src="img/dubai_marina.jpg" alt="city image" data-ux-text="This is an image" data-ux-position="right">
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="large-12 columns">
+							<label><span data-ux-text="Here is the textarea label text<br> wrapped in a span" data-ux-position="topRight">The textarea</span></label>
+							<textarea data-ux-text="This is the textarea" data-ux-position="bottom"></textarea>
+						</div>
+					</div>
+				</form>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				<!--By Rune Lyngbach Jensen-->
+			</div>
+		</div>
+
+		<!--ux include from github repository parent folder, make sure path is correct if you copied this text to your own index-->
+		<script src="../ux.js"></script>
+
+		<script>
+			var overlay = new ux({
+				responsive: true
+			});
+
+			function showOverlay() {
+				overlay.show();	
+			}
+
+			//overlay.show();
+		</script>
+	</body>
+</html>

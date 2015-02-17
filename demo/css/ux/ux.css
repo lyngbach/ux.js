@@ -1,0 +1,116 @@
+.ux_overlay {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	z-index: 10000;
+	opacity: 0;
+	-webkit-transition: 0.3s;
+	   -moz-transition: 0.3s;
+		-ms-transition: 0.3s;
+			transition: 0.3s;
+}
+
+.ux_overlay.fade {
+	opacity: 0.8;
+}
+
+.ux_tooltip {
+	font-size: inherit;
+	position: absolute;
+	line-height: 20px;
+	min-height: 20px;
+	min-width: 20px;
+	color: #FFF;
+	border-radius: 5px;
+	z-index: 10001;
+	margin-bottom: 50px;
+	-webkit-transition: 0.3s;
+	   -moz-transition: 0.3s;
+		-ms-transition: 0.3s;
+			transition: 0.3s;
+}
+
+.ux_tooltip:after, .ux_tooltip:before {
+	position: absolute;
+	content: '';
+}
+
+.ux_top:after {
+	width: 20px;
+	height: 70px;
+	background: url('arrow_top.png') no-repeat;
+	background-size: 100% 100%;
+	bottom: -70px;
+	left: 50%;
+	margin-left: -15px;
+}
+
+.ux_top_left:after {
+	width: 70px;
+	height: 50px;
+	background: url('arrow_top_left.png') no-repeat;
+	background-size: 100% 100%;
+	right: -70px;
+	bottom: -30px;
+}
+
+.ux_top_right:before {
+	width: 70px;
+	height: 50px;
+	background: url('arrow_top_right.png') no-repeat;
+	background-size: 100% 100%;
+	left: -70px;
+	bottom: -30px;
+}
+
+.ux_right:before {
+	width: 70px;
+	height: 20px;
+	background: url('arrow_right.png') no-repeat;
+	background-size: 100% 100%;
+	left: -70px;
+	top: 50%;
+	margin-top: -10px;
+}
+
+.ux_bottom:after {
+	width: 20px;
+	height: 70px;
+	background: url('arrow_bottom.png') no-repeat;
+	background-size: 100% 100%;
+	left: 50%;
+	margin-left: -15px;
+	top: -70px;
+}
+
+.ux_bottom_right:before {
+	width: 70px;
+	height: 50px;
+	background: url('arrow_bottom_right.png') no-repeat;
+	background-size: 100% 100%;
+	left: -70px;
+	top: -30px;
+}
+
+.ux_bottom_left:after {
+	width: 70px;
+	height: 50px;
+	background: url('arrow_bottom_left.png') no-repeat;
+	background-size: 100% 100%;
+	right: -70px;
+	top: -30px;
+}
+
+.ux_left:after {
+	width: 70px;
+	height: 20px;
+	background: url('arrow_left.png') no-repeat;
+	background-size: 100% 100%;
+	right: -70px;
+	top: 50%;
+	margin-top: -10px;
+	height: 20px;
+}
