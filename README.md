@@ -12,7 +12,7 @@ Todo
 * Optimization: Optimize CSS and image files
 * Feature: Make it work on dynamic content (fx sliders)
 * Fix: Making certain functions private
-* Issue: Help text are currently aligned for center of the element which gives an issue when element content is shorter then the element width itself (think 100% width label with short text)
+* Issue: Responsive mode for topLeft, topRight, bottomRight & bottomLeft positions
 
 
 Usage
