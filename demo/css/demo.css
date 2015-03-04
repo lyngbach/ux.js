@@ -34,10 +34,7 @@ h1 {
 }
 
 .deep_bg {
-	position: absolute;
-	left: 0;
 	width: 100%;
-	min-height: 300px;
 	margin-top: 20px;
 	border-top: 1px solid #111;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
@@ -115,11 +112,8 @@ h1 {
 }
 
 .preview img {
-	/*height: 177px;
-	width: auto;*/
 	width: 100%;
 	height: auto;
-	
 	border: 1px solid #090909;
 }
 
@@ -170,6 +164,19 @@ h1 {
 .btn_test:hover i {
 	color: #00b4ff;
 	text-shadow: none;
+}
+
+footer {
+	font-family: 'another_shabby', arial, helvetica sans-serif;
+	font-weight: 700;
+	font-size: 40px;
+	margin: 20px 0 100px 0;
+	padding: 0;
+	color: #000;
+	opacity: 0.7;
+	text-shadow: 1px 1px rgba(255, 255, 255, 0.2), 0px 0px #000;
+	font-style: italic;
+	float: right;
 }
 
 
