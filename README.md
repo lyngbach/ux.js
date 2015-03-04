@@ -4,7 +4,7 @@ UX help overlay plugin
 Ux.js is a pure lightweight (5kb minfied + 85kb for imgs) javascript plugin for showing help overlays on your website pages.
 Really easy to use and fully responsive! Making help overlays have never been more fun to do!
 
-*Demo inc soon when some provider issue stuff have been sorted*
+Tjek out the demo [here](http://ux.lyngbach.com/)
 
 
 Todo
