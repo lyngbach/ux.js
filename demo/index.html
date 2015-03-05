@@ -1,13 +1,17 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>ux.js</title>
+		<title>ux.js - Making ux help overlays have never been this easy and fun to do</title>
 		
 		<meta http-equiv="x-ua-compatible" content="IE=edge" />
+		<meta charset="UTF-8">
+
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-touch-fullscreen" content="yes">
-
+		<meta name="author" content="Rune Lyngbach Jensen">
+		<meta name="description" content="ux.js is a pure lightweight javascript plugin that makes it really easy to create sweet ux help overlays.. -It's fast and fun to do aswell!">
+		
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/foundation.css">
 		<link rel="stylesheet" href="css/ux/ux.css">
@@ -24,6 +28,7 @@
 					<p>Fully responsive pure javascript ux overlay!</p>
 					<span>Try it out here..</span>
 					<div class="btn_wrapper">
+						<!-- added onclick on this button to call show() method -->
 						<div class="btn_test" onclick="showOverlay();">
 							<i class="icon-off"></i>
 						</div>
@@ -65,7 +70,7 @@
 						</div>
 						<div class="large-6 columns">
 							<div class="preview">
-								<img src="img/dubai_marina.jpg" alt="city image" data-ux-text="This is an image, try resize the window" data-ux-position="right">
+								<img src="img/dubai_marina.jpg" alt="dubai_marina dubai marina image" data-ux-text="This is an image, try resize the window" data-ux-position="right">
 							</div>
 						</div>
 					</div>
@@ -93,15 +98,24 @@
 		<script src="js/ux.js"></script>
 
 		<script>
+			// ux init
 			var overlay = new ux({
 				responsive: true
 			});
 
+			// global function to handle show() method of overlay on buttons
 			function showOverlay() {
 				overlay.show();	
 			}
 
-			//overlay.show();
+			//Google analytics
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-43042340-2', 'auto');
+			ga('send', 'pageview');
 		</script>
 	</body>
 </html>
