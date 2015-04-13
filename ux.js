@@ -1,5 +1,5 @@
 //
-// ux.js v0.2.0
+// ux.js v0.2.1
 //
 // https://github.com/lyngbach/ux.js
 //
@@ -21,7 +21,7 @@ var ux = function (options) {
 		var that = this;
 
 		clearTimeout(resizeTimeout);
-		resizeTimeout = setTimeout(function () { that.reAdjust(); }, 150);	
+		resizeTimeout = setTimeout(function () { that.reAdjust(); }, 150);
 	};
 
 	window.onresize = this.onBrowserResize.bind(this);
@@ -78,7 +78,9 @@ ux.prototype.addTooltip = function (element) {
 	var tooltipBox = document.createElement('div');
 
 	tooltipBox.innerHTML = element.getAttribute('data-ux-text');
-	element.setAttribute('data-ux-original', element.getAttribute('data-ux-position'));
+	if (element.getAttribute('data-ux-original') === null) {
+		element.setAttribute('data-ux-original', element.getAttribute('data-ux-position'));	
+	}
 	tooltipBox.className = 'ux_tooltip';
 	document.body.appendChild(tooltipBox);
 
@@ -174,6 +176,8 @@ ux.prototype.setPosition = function (element, tooltipBox, coords) {
 };
 
 ux.prototype.getCoordinates = function (element, tooltipBox) {
+	'use strict';
+
 	var xPosition = 0,
 		yPosition = 0,
 		searchElement = element;
@@ -184,10 +188,17 @@ ux.prototype.getCoordinates = function (element, tooltipBox) {
 		searchElement = searchElement.offsetParent;
 	}
 
-	return this.setPosition(element, tooltipBox, { x: xPosition, y: yPosition });
+	// adjusting for mobile view
+	if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+		yPosition += window.pageYOffset;
+	}
+	
+	return this.setPosition(element, tooltipBox, { x: xPosition, y: yPosition });		
 };
 
-ux.prototype.getOffset = function (element, tooltipBox) {
+ux.prototype.getOffset = function (element) {
+	'use strict';
+
 	var xPosition = 0,
 		yPosition = 0,
 		searchElement = element;
@@ -237,21 +248,89 @@ ux.prototype.responsive = function (element, tooltipBox) {
 		if (that.options.responsive) {
 			switch (element.getAttribute('data-ux-original')) {
 				case 'left':
-					if (that.getOffset(element, tooltipBox).x < (tooltipBox.offsetWidth + that.options.widthMargin)) {
-						element.setAttribute('data-ux-position', 'topLeft');
+				case 'topLeft':
+				case 'bottomLeft':
+					if (that.getOffset(element).x < (tooltipBox.offsetWidth + that.options.widthMargin)) {
+						var searchElement = element, 
+							xPosition = 0;
+
+						while (searchElement) {
+							xPosition += (searchElement.offsetLeft - searchElement.scrollLeft + searchElement.clientLeft);
+							searchElement = searchElement.offsetParent;
+						}
+						
+						if ((element.offsetWidth / 2 + xPosition) < 100 + that.options.widthMargin) {
+							if (window.innerWidth - (element.offsetWidth / 2 + xPosition) < 110 + that.options.widthMargin) {
+								if (element.getAttribute('data-ux-original') === 'bottomLeft') {
+									element.setAttribute('data-ux-position', 'bottom');
+								} else {
+									element.setAttribute('data-ux-position', 'top');
+								}
+							} else {
+								if (element.getAttribute('data-ux-original') === 'bottomLeft') {
+									element.setAttribute('data-ux-position', 'bottomRight');
+								} else {
+									element.setAttribute('data-ux-position', 'topRight');
+								}
+							}
+						} else if ((element.offsetWidth / 2 + xPosition) < (tooltipBox.offsetWidth + that.options.widthMargin) ) {
+							if (element.getAttribute('data-ux-original') === 'bottomLeft') {
+								element.setAttribute('data-ux-position', 'bottom');
+							} else {
+								element.setAttribute('data-ux-position', 'top');
+							}
+						}  else {
+							if (element.getAttribute('data-ux-original') === 'bottomLeft') {
+								element.setAttribute('data-ux-position', 'bottomLeft');
+							} else {
+								element.setAttribute('data-ux-position', 'topLeft');
+							}
+						}
+						
 					} else {
-						element.setAttribute('data-ux-position', 'left');
+						element.setAttribute('data-ux-position', element.getAttribute('data-ux-original'));
 					}
 					break;
 				case 'right':
-					var rightDistance = window.innerWidth - (element.offsetLeft + element.offsetWidth);
+				case 'topRight':
+				case 'bottomRight':
+					if (window.innerWidth - (that.getOffset(element).x + element.offsetWidth) < (110 + that.options.widthMargin)) {
+						
+						if (window.innerWidth - (that.getOffset(element).x + (element.offsetWidth / 2)) > (110 + that.options.widthMargin)) {
+							if (element.getAttribute('data-ux-original') === 'bottomRight') {
+								element.setAttribute('data-ux-position', 'bottomRight');
+							} else {
+								element.setAttribute('data-ux-position', 'topRight');	
+							}
+						} else {
+							if ((element.offsetWidth / 2 + that.getOffset(element).x) < tooltipBox.offsetWidth + that.options.widthMargin) {
+								if (element.getAttribute('data-ux-original') === 'bottomRight') {
+									element.setAttribute('data-ux-position', 'bottom');
+								} else {
+									element.setAttribute('data-ux-position', 'top');
+								}
+							} else {
+								if (element.getAttribute('data-ux-original') === 'bottomRight') {
+									element.setAttribute('data-ux-position', 'bottomLeft');
+								} else {
+									element.setAttribute('data-ux-position', 'topLeft');	
+								}
+								
+							}
+						}
 
-					if (rightDistance < 200) {
-						element.setAttribute('data-ux-position', 'topRight');
 					} else {
-						element.setAttribute('data-ux-position', 'right');
+						element.setAttribute('data-ux-position', element.getAttribute('data-ux-original'));
 					}
 					setTimeout(function() {
+						if ((element.offsetWidth / 2 + that.getOffset(element).x) < tooltipBox.offsetWidth + that.options.widthMargin) {
+							if (element.getAttribute('data-ux-original') === 'bottomRight') {
+								element.setAttribute('data-ux-position', 'bottom');
+							} else {
+								element.setAttribute('data-ux-position', 'top');	
+							}
+						}
+
 						that.getCoordinates(element, tooltipBox);
 					}, 300);
 					break;
