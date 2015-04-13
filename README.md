@@ -1,7 +1,7 @@
 # ux.js
 UX help overlay plugin
 
-Ux.js is a pure lightweight (5kb minfied + 85kb for imgs) javascript plugin for showing help overlays on your website pages.
+Ux.js is a pure lightweight (7kb minfied + 85kb for imgs) javascript plugin for showing help overlays on your website pages.
 Really easy to use and fully responsive! Making help overlays have never been more fun to do!
 
 Tjek out the demo [here](http://ux.lyngbach.com/)
@@ -9,10 +9,8 @@ Tjek out the demo [here](http://ux.lyngbach.com/)
 
 Todo
 --------
-* Optimization: Optimize CSS and image files
+* Optimization: Optimize CSS and the arrow img files
 * Feature: Make it work on dynamic content (fx sliders)
-* Fix: Making certain functions private
-* Issue: Responsive mode for topLeft, topRight, bottomRight & bottomLeft positions
 
 
 Usage
@@ -48,7 +46,7 @@ function showOverlay() {
 
 Options
 --------
-ux.js comes with 3 optional parameters so far, that you can set as an option object when you initialize the plugin.
+ux.js comes with 3 optional parameters so far that you can set as an option object when you initialize the plugin.
 
 example
 ```js
@@ -62,7 +60,7 @@ Available options
 
 | Parameter		| Type		| Default	| Description																|
 | ------------- | --------- | --------- | ------------------------------------------------------------------------- |
-| responsive	| boolean	| false		| Set the plugin to check if text can be shown on the left & right tooltips	|
+| responsive	| boolean	| false		| Auto calculating and moving the tooltips if no room on the sides	|
 | widthMargin	| number	| 70		| Set in pixels the distance from the tooltip box to the the element for top, right, bottom & left positions			|
 | topMargin		| number	| 27		| Set in pixels the distance from the tooltip box to the the element for topLeft, topRight, bottomRight & bottomLeft positions		|
 
@@ -82,7 +80,7 @@ bottomLeft
 left
 ```
 
-When responsive is set to true it will automatically calculate the distances on the left and right positions and convert them to topLeft and topRight if there is not enough space on the sides for the tooltip text
+When responsive is set to true it will automatically calculate the distances on the left and right of the element and positioning the tooltip accordingly compared to the screen.
 
 
 Methods
