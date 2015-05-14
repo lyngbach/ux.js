@@ -14,9 +14,11 @@
 		
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/foundation.css">
+		<link rel="stylesheet" href="css/swiper.min.css">
 		<link rel="stylesheet" href="css/ux/ux.css">
-		<link rel="stylesheet" href="css/demo.css">
 		<link rel="stylesheet" href="css/fontello.css">
+		<link rel="stylesheet" href="css/demo.css">
+		
 	</head>
 	<body>
 		<div class="row">
@@ -48,65 +50,113 @@
 		</div>
 
 		<div class="deep_bg">
-			<div class="row">
+			<div class="swiper-container" id="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
 
-				<form class="form large-12 columns large-centered">
-					<div class="row">
-						<div class="large-6 columns">
-							<div class="row collapse">
-								<div class="small-3 large-2 columns">
-									<span class="prefix">http://</span>
+						<div class="row">
+							<form class="form large-12 columns large-centered">
+								<div class="row">
+									<div class="large-6 columns">
+										<div class="row collapse">
+											<div class="small-3 large-2 columns">
+												<span class="prefix">http://</span>
+											</div>
+											<div class="small-9 large-10 columns">
+												<input type="text" placeholder="Enter your URL...">
+											</div>
+										</div>
+
+										<label>Text field 1</label>
+										<input type="text" data-ux-text="Here you can write your username for field 1" data-ux-position="left">
+
+										<label>Text field 2</label>
+										<input type="text">
+									</div>
+									<div class="large-6 columns">
+										<div class="preview">
+											<img src="img/dubai_marina.jpg" alt="dubai_marina dubai marina image" data-ux-text="This is an image, try resize the window" data-ux-position="right">
+										</div>
+									</div>
 								</div>
-								<div class="small-9 large-10 columns">
-									<input type="text" placeholder="Enter your URL...">
+
+								<div class="row">
+									<div class="large-12 columns">
+										<label><span data-ux-text="Here is the textarea label text<br> wrapped in a span" data-ux-position="right" style="float: right">The textarea</span></label>
+										<textarea data-ux-text="This is the textarea" data-ux-position="bottom"></textarea>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<form class="form large-12 columns large-centered">
+							<div class="row">
+								<div class="large-6 columns">
+									<div class="preview">
+										<img src="img/dubai_marina.jpg" alt="dubai_marina dubai marina image" data-ux-text="This is a tooltip in second slide" data-ux-position="left">
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="swiper-slide">
+						<form class="form large-12 columns large-centered">
+							<div class="row">
+								<div class="large-6 columns">
+									<label>Input field left</label>
+									<input type="text" data-ux-text="last slide input help text" data-ux-position="bottomLeft">
+								</div>
+								<div class="large-6 columns">
+									<label>Input field right</label>
+									<input type="text">
 								</div>
 							</div>
 
-							<label>Text field 1</label>
-							<input type="text" data-ux-text="Here you can write your username for field 1" data-ux-position="left">
-
-							<label>Text field 2</label>
-							<input type="text">
-						</div>
-						<div class="large-6 columns">
-							<div class="preview">
-								<img src="img/dubai_marina.jpg" alt="dubai_marina dubai marina image" data-ux-text="This is an image, try resize the window" data-ux-position="right">
+							<div class="row">
+								<div class="large-12 columns">
+									<label>Text field</label>
+									<textarea data-ux-text="last slide tooltip text" data-ux-position="bottomRight"></textarea>
+								</div>
 							</div>
-						</div>
+						</form>
 					</div>
+				</div>
 
-					<div class="row">
-						<div class="large-12 columns">
-							<label><span data-ux-text="Here is the textarea label text<br> wrapped in a span" data-ux-position="right" style="float: right">The textarea</span></label>
-							<textarea data-ux-text="This is the textarea" data-ux-position="bottom"></textarea>
-						</div>
-					</div>
-				</form>
-
+				<div class="swiper-pagination" id="swiper-pagination"></div>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="large-12 columns">
 				<footer>
-					By Rune Lyngbach Jensen
+					Created by Rune Lyngbach Jensen
 				</footer>
 			</div>
 		</div>
 
 		<!--ux include from github repository parent folder, make sure path is correct if you copied this text to your own index-->
+		<script src="js/swiper.min.js"></script>
 		<script src="js/ux.min.js"></script>
+
 
 		<script>
 			// ux init
 			var overlay = new ux({
-				responsive: true
+				responsive: true,
+				sliderMode: true
 			});
 
 			// global function to handle show() method of overlay on buttons
 			function showOverlay() {
-				overlay.show();	
+				overlay.show();
 			}
+
+			// optional swiper plugin for testing the sliderMode option
+			var swiper = new Swiper('#swiper-container', {
+				pagination: '#swiper-pagination',
+				paginationClickable: true
+			});
 
 			//Google analytics
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

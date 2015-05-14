@@ -1,5 +1,5 @@
 //
-// ux.js v0.2.1
+// ux.js v0.3.0
 //
 // https://github.com/lyngbach/ux.js
 //
@@ -13,9 +13,11 @@ var ux = function (options) {
 
 	var resizeTimeout;
 	
+	this.uxId = 0;
 	this.options = options || {};
 	this.options.widthMargin = this.options.widthMargin || 70;
 	this.options.topMargin = this.options.topMargin || 27;
+	this.options.sliderMode = this.options.sliderMode || false;
 	
 	this.onBrowserResize = function () {
 		var that = this;
@@ -34,6 +36,8 @@ ux.prototype.show = function () {
 		uxOverlay,
 		i;
 	
+	this.uxId = 0;
+
 	for (i = 0; i < attrElements.length; i += 1) {
 		this.addTooltip(attrElements[i]);	
 	}
@@ -75,23 +79,43 @@ ux.prototype.visible = function () {
 ux.prototype.addTooltip = function (element) {
 	'use strict';
 	
-	var tooltipBox = document.createElement('div');
+	if (this.isVisible(element) === true) {
+		this.uxId += 1;
 
-	tooltipBox.innerHTML = element.getAttribute('data-ux-text');
-	if (element.getAttribute('data-ux-original') === null) {
-		element.setAttribute('data-ux-original', element.getAttribute('data-ux-position'));	
+		var tooltipBox = document.createElement('div');
+
+		tooltipBox.innerHTML = element.getAttribute('data-ux-text');
+
+		if (element.getAttribute('data-ux-original') === null) {
+			element.setAttribute('data-ux-original', element.getAttribute('data-ux-position'));	
+		}
+
+		tooltipBox.className = 'ux_tooltip';
+		tooltipBox.id = 'ux' + this.uxId;
+		
+		document.body.appendChild(tooltipBox);
+
+		this.positionTooltip(element, tooltipBox);
 	}
-	tooltipBox.className = 'ux_tooltip';
-	document.body.appendChild(tooltipBox);
+};
 
-	this.positionTooltip(element, tooltipBox);
+ux.prototype.isVisible = function (element) {
+	'use strict';
+
+	var rect = element.getBoundingClientRect();
+
+	if (rect.left > 0 && rect.left < window.innerWidth || this.options.sliderMode === false) {
+		return true;
+	} else {
+		return false;
+	}
 };
 
 ux.prototype.positionTooltip = function (element, tooltipBox) {
 	'use strict';
-	
+
 	if (tooltipBox % 1 === 0) {
-		tooltipBox = document.querySelectorAll('.ux_tooltip')[tooltipBox];
+		tooltipBox = document.getElementById('ux' + tooltipBox);
 	}
 
 	switch (this.getPosition(element)) {
@@ -178,15 +202,9 @@ ux.prototype.setPosition = function (element, tooltipBox, coords) {
 ux.prototype.getCoordinates = function (element, tooltipBox) {
 	'use strict';
 
-	var xPosition = 0,
-		yPosition = 0,
-		searchElement = element;
-
-	while (searchElement) {
-		xPosition += (searchElement.offsetLeft - searchElement.scrollLeft + searchElement.clientLeft);
-		yPosition += (searchElement.offsetTop - searchElement.scrollTop + searchElement.clientTop);
-		searchElement = searchElement.offsetParent;
-	}
+	var rect = element.getBoundingClientRect(),
+		xPosition = rect.left,
+		yPosition = rect.top;
 
 	// adjusting for mobile view
 	if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -199,23 +217,17 @@ ux.prototype.getCoordinates = function (element, tooltipBox) {
 ux.prototype.getOffset = function (element) {
 	'use strict';
 
-	var xPosition = 0,
-		yPosition = 0,
-		searchElement = element;
-
-	while (searchElement) {
-		xPosition += (searchElement.offsetLeft - searchElement.scrollLeft + searchElement.clientLeft);
-		yPosition += (searchElement.offsetTop - searchElement.scrollTop + searchElement.clientTop);
-		searchElement = searchElement.offsetParent;
-	}
-
-	return { x: xPosition, y: yPosition };
+	var rect = element.getBoundingClientRect();
+	
+	return { x: rect.left, y: rect.top };
 };
 
 ux.prototype.responsive = function (element, tooltipBox) {
 	'use strict';
 
-	var that = this;
+	var that = this,
+		rect,
+		xPosition;
 
 	switch (element.getAttribute('data-ux-position')) {
 		case 'top':
@@ -251,13 +263,8 @@ ux.prototype.responsive = function (element, tooltipBox) {
 				case 'topLeft':
 				case 'bottomLeft':
 					if (that.getOffset(element).x < (tooltipBox.offsetWidth + that.options.widthMargin)) {
-						var searchElement = element, 
-							xPosition = 0;
-
-						while (searchElement) {
-							xPosition += (searchElement.offsetLeft - searchElement.scrollLeft + searchElement.clientLeft);
-							searchElement = searchElement.offsetParent;
-						}
+						rect = element.getBoundingClientRect();
+						xPosition = rect.left;
 						
 						if ((element.offsetWidth / 2 + xPosition) < 100 + that.options.widthMargin) {
 							if (window.innerWidth - (element.offsetWidth / 2 + xPosition) < 110 + that.options.widthMargin) {
@@ -343,13 +350,18 @@ ux.prototype.responsive = function (element, tooltipBox) {
 
 ux.prototype.reAdjust = function () {
 	'use strict';
+
+	this.uxId = 0;
 	
 	if (this.visible() !== null) {
 		var attrElements = document.querySelectorAll('[data-ux-text]'),
 			i;
 		
 		for (i = 0; i < attrElements.length; i += 1) {
-			this.positionTooltip(attrElements[i], i, true);	
+			if (this.isVisible(attrElements[i]) === true) {
+				this.uxId += 1;
+				this.positionTooltip(attrElements[i], this.uxId);
+			}
 		}
 	}
 };
