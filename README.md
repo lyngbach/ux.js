@@ -46,7 +46,7 @@ function showOverlay() {
 
 Options
 --------
-ux.js comes with 3 optional parameters so far that you can set as an option object when you initialize the plugin.
+ux.js comes with a few optional parameters so far that you can set as an option object when you initialize the plugin.
 
 example
 ```js
@@ -63,6 +63,7 @@ Available options
 | responsive	| boolean	| false		| Auto calculating and moving the tooltips if no room on the sides	|
 | widthMargin	| number	| 70		| Set in pixels the distance from the tooltip box to the the element for top, right, bottom & left positions			|
 | topMargin		| number	| 27		| Set in pixels the distance from the tooltip box to the the element for topLeft, topRight, bottomRight & bottomLeft positions		|
+| slideMode	| boolean	| false		| 	Set to true to allow multiple tooltips within a horizontal slider. This will hide the tooltips that are outside the window scre	 	|
 
 
 UX positions
