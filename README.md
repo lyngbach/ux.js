@@ -63,7 +63,7 @@ Available options
 | responsive	| boolean	| false		| Auto calculating and moving the tooltips if no room on the sides	|
 | widthMargin	| number	| 70		| Set in pixels the distance from the tooltip box to the the element for top, right, bottom & left positions			|
 | topMargin		| number	| 27		| Set in pixels the distance from the tooltip box to the the element for topLeft, topRight, bottomRight & bottomLeft positions		|
-| sliderMode	| boolean	| false		| 	Set to true to allow multiple tooltips within a horizontal slider. This will hide the tooltips that are outside the window scre	 	|
+| sliderMode	| boolean	| false		| 	Set to true to allow multiple tooltips within a horizontal slider. This will hide the tooltips that are outside the window screen	 	|
 
 
 UX positions
