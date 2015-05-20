@@ -10,7 +10,6 @@ Tjek out the demo [here](http://ux.lyngbach.com/)
 Todo
 --------
 * Optimization: Optimize CSS and the arrow img files
-* Feature: Make it work on dynamic content (fx sliders)
 
 
 Usage
