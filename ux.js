@@ -1,5 +1,5 @@
 //
-// ux.js v0.3.0
+// ux.js v0.4.0
 //
 // https://github.com/lyngbach/ux.js
 //
@@ -18,6 +18,7 @@ var ux = function (options) {
 	this.options.widthMargin = this.options.widthMargin || 70;
 	this.options.topMargin = this.options.topMargin || 27;
 	this.options.sliderMode = this.options.sliderMode || false;
+	this.options.firstTime = this.options.firstTime || false;
 	
 	this.onBrowserResize = function () {
 		var that = this;
@@ -27,6 +28,19 @@ var ux = function (options) {
 	};
 
 	window.onresize = this.onBrowserResize.bind(this);
+
+	this.checkFirstTime();
+};
+
+// show the overlay firsttime automatically if no storage is set
+ux.prototype.checkFirstTime = function () {	
+	if (this.options.firstTime === true) {
+		if (localStorage.getItem('uxFirstTime') === null) {
+			this.show();
+
+			localStorage.setItem('uxFirstTime', true);
+		}
+	}
 };
 
 ux.prototype.show = function () {
@@ -48,8 +62,8 @@ ux.prototype.show = function () {
 	uxOverlay.onclick = this.hide;
 
 	document.body.appendChild(uxOverlay);
-
-	setTimeout(function () { uxOverlay.className += ' fade'; }, 50);
+	
+	window.requestAnimationFrame(function () { uxOverlay.className += ' fade'; });
 };
 
 ux.prototype.hide = function () {
@@ -65,7 +79,7 @@ ux.prototype.hide = function () {
 
 	uxOverlay.className = 'ux_overlay';
 
-	setTimeout(function () {	uxOverlay.parentNode.removeChild(uxOverlay); }, 300);
+	setTimeout(function () { uxOverlay.parentNode.removeChild(uxOverlay); }, 300);
 };
 
 ux.prototype.visible = function () {
